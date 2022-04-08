@@ -31,6 +31,7 @@ class Product{
                 LEFT JOIN
                     categories c
                         ON p.category_id = c.id
+            where p.IsBooked = 0            
             ORDER BY
                 p.created DESC";
   
