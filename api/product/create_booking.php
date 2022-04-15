@@ -11,33 +11,39 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include_once '../config/database.php';
   
 // instantiate product object
-include_once '../objects/product.php';
+include_once '../objects/product_booking.php';
   
 $database = new Database();
 $db = $database->getConnection();
   
-$product = new Product($db);
+$product = new ProductBooking($db);
   
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
   
 // make sure data is not empty
 if(
-    !empty($data->name) &&
-    !empty($data->price) &&
-    !empty($data->description) &&
-    !empty($data->category_id)
+    !empty($data->firstName) &&
+    !empty($data->lastName) &&
+    !empty($data->email) &&
+    !empty($data->address) &&
+    !empty($data->zipCode) &&
+    !empty($data->product_id)
 ){
   
     // set product property values
-    $product->name = $data->name;
-    $product->price = $data->price;
-    $product->description = $data->description;
-    $product->category_id = $data->category_id;
+    $product->firstName = $data->firstName;
+    $product->lastName = $data->lastName;
+    $product->email = $data->email;
+    $product->address = $data->address;
+    $product->zipCode = $data->zipCode;
+    $product->product_id = $data->product_id;
+    $product->isBooked = 1;
     $product->created = date('Y-m-d H:i:s');
-  
+    $product->modified = date('Y-m-d H:i:s');
+
     // create the product
-    if($product->create()){
+    if($product->createBooking()){
   
         // set response code - 201 created
         http_response_code(201);

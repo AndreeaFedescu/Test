@@ -3,14 +3,14 @@ $(document).ready(function(){
     // show html form when 'book a product' button was clicked
     $(document).on('click', '.book-product-button', function(){
         // load list of categories
-        $.getJSON("http://localhost/RestFullAPI2/api/category/read.php", function(data){
+        $.getJSON("http://localhost/RestFullAPI2/api/category/read-booking.php", function(data){
             // build categories option html
             // loop through returned list of data
-            var categories_options_html=`<select name='category_id' class='form-control'>`;
+            var products_options_html=`<select name='product_id' class='form-control'>`;
             $.each(data.records, function(key, val){
-                categories_options_html+=`<option value='` + val.id + `'>` + val.name + `</option>`;
+                products_options_html+=`<option value='` + val.id + `'>` + val.name + `</option>`;
             });
-            categories_options_html+=`</select>`;
+            products_options_html+=`</select>`;
 
             // we have our html form here where product information will be entered
             // we used the 'required' html5 property to prevent empty fields
@@ -24,28 +24,40 @@ $(document).ready(function(){
             <form id='book-product-form' action='#' method='post' border='0'>
                 <table class='table table-hover table-responsive table-bordered'>
              
-                    <!-- name field -->
+                    <!-- first name field -->
                     <tr>
-                        <td>Name</td>
-                        <td><input type='text' name='name' class='form-control' required /></td>
+                        <td>First Name</td>
+                        <td><input type='text' name='firstName' class='form-control' required /></td>
+                    </tr>
+                    
+                    <!-- last name field -->
+                    <tr>
+                        <td>Last Name</td>
+                        <td><input type='text' name='lastName' class='form-control' required /></td>
                     </tr>
              
-                    <!-- price field -->
+                    <!-- email field -->
                     <tr>
-                        <td>Price</td>
-                        <td><input type='number' min='1' name='price' class='form-control' required /></td>
+                        <td>Email</td>
+                        <td><input type='email' name='email' class='form-control' required /></td>
                     </tr>
              
-                    <!-- description field -->
+                    <!-- address field -->
                     <tr>
-                        <td>Description</td>
-                        <td><textarea name='description' class='form-control' required></textarea></td>
+                        <td>Address</td>
+                        <td><textarea name='address' class='form-control' required></textarea></td>
+                    </tr>
+                    
+                    <!-- zip code field -->
+                    <tr>
+                        <td>Zip Code</td>
+                        <td><input type='number' name='zipCode' class='form-control' required /></td>
                     </tr>
              
                     <!-- categories 'select' field -->
                     <tr>
-                        <td>Category</td>
-                        <td>` + categories_options_html + `</td>
+                        <td>Products</td>
+                        <td>` + products_options_html + `</td>
                     </tr>
              
                     <!-- button to submit form -->
@@ -60,7 +72,6 @@ $(document).ready(function(){
              
                 </table>
             </form>`;
-            */
 
             // inject html to 'page-content' of our app
             $("#page-content").html(book_product_html);
