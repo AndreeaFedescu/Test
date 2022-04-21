@@ -4,7 +4,7 @@ $(document).ready(function(){
     // show list of product on first load
     showProductsFirstPage();
 
-    // when a 'read products' button was clicked
+    // when a 'unbooked products' button was clicked
     $(document).on('click', '.read-products-button', function(){
         showProductsFirstPage();
     });
@@ -35,20 +35,17 @@ function showProducts(json_url){
         readProductsTemplate(data, "");
 
         // chage page title
-        changePageTitle("Read Products");
+        changePageTitle("Unbooked Products");
 
     });
 }
-
-
-
 
 $(document).ready(function(){
 
     // show list of product on first load
     showProducts();
 
-    // when a 'read products' button was clicked
+    // when a 'unbooked products' button was clicked
     $(document).on('click', '.read-products-button', function(){
         showProducts();
     });
@@ -64,7 +61,7 @@ function showProducts(){
         readProductsTemplate(data, "");
 
         // chage page title
-        changePageTitle("Read Products");
+        changePageTitle("Unbooked Products");
 
     });
 
@@ -131,8 +128,8 @@ function showProducts(){
         // inject to 'page-content' of our app
         $("#page-content").html(read_products_html);
         
-        // chage page title
-        changePageTitle("Read Products");
+        // change page title
+        changePageTitle("Unbooked Products");
     });
 */
 }

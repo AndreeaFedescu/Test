@@ -19,21 +19,15 @@ class Product{
         $this->conn = $db;
     }
 
-
-// read products
+// read unbooked products
  function read(){
   
     // select all query
-    $query = "SELECT
-                c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
-            FROM
-                " . $this->table_name . " p
-                LEFT JOIN
-                    categories c
-                        ON p.category_id = c.id
+    $query = "SELECT c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
+            FROM " . $this->table_name . " p
+                LEFT JOIN categories c ON p.category_id = c.id
             where p.IsBooked = 0            
-            ORDER BY
-                p.created DESC";
+            ORDER BY p.created DESC";
   
     // prepare query statement
     $stmt = $this->conn->prepare($query);
@@ -44,24 +38,44 @@ class Product{
     return $stmt;
 }
 
+// read booked products
+function readBookedProducts(){
+        // select all query
+        $query = "SELECT c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
+            FROM " . $this->table_name . " p
+                LEFT JOIN categories c ON p.category_id = c.id
+            where p.IsBooked = 1           
+            ORDER BY p.modified DESC";
+
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+
+        // execute query
+        $stmt->execute();
+
+        return $stmt;
+    }
+
 // create product
 function create(){
-  
     // query to insert record
-    $query = "INSERT INTO
-                " . $this->table_name . "
+    $query = "INSERT INTO " . $this->table_name . "
             SET
-                name=:name, price=:price, description=:description, category_id=:category_id, created=:created";
+                name=:name, 
+                price=:price, 
+                description=:description, 
+                category_id=:category_id, 
+                created=:created";
   
     // prepare query
     $stmt = $this->conn->prepare($query);
   
     // sanitize
-    $this->name=htmlspecialchars(strip_tags($this->name));
-    $this->price=htmlspecialchars(strip_tags($this->price));
-    $this->description=htmlspecialchars(strip_tags($this->description));
-    $this->category_id=htmlspecialchars(strip_tags($this->category_id));
-    $this->created=htmlspecialchars(strip_tags($this->created));
+    $this->name = htmlspecialchars(strip_tags($this->name));
+    $this->price = htmlspecialchars(strip_tags($this->price));
+    $this->description = htmlspecialchars(strip_tags($this->description));
+    $this->category_id = htmlspecialchars(strip_tags($this->category_id));
+    $this->created = htmlspecialchars(strip_tags($this->created));
   
     // bind values
     $stmt->bindParam(":name", $this->name);
@@ -76,24 +90,16 @@ function create(){
     }
   
     return false;
-      
 }
 
 // used when filling up the update product form
 function readOne(){
-  
-    // query to read single record
-    $query = "SELECT
-                c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
-            FROM
-                " . $this->table_name . " p
-                LEFT JOIN
-                    categories c
-                        ON p.category_id = c.id
-            WHERE
-                p.id = ?
-            LIMIT
-                0,1";
+        // query to read single record
+    $query = "SELECT c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
+            FROM " . $this->table_name . " p
+                LEFT JOIN categories c ON p.category_id = c.id
+            WHERE p.id = ?
+            LIMIT 0,1";
   
     // prepare query statement
     $stmt = $this->conn->prepare( $query );
@@ -117,10 +123,8 @@ function readOne(){
 
 // update the product
 function update(){
-  
     // update query
-    $query = "UPDATE
-                " . $this->table_name . "
+    $query = "UPDATE" . $this->table_name . "
             SET
                 name = :name,
                 price = :price,
@@ -133,11 +137,11 @@ function update(){
     $stmt = $this->conn->prepare($query);
   
     // sanitize
-    $this->name=htmlspecialchars(strip_tags($this->name));
-    $this->price=htmlspecialchars(strip_tags($this->price));
-    $this->description=htmlspecialchars(strip_tags($this->description));
-    $this->category_id=htmlspecialchars(strip_tags($this->category_id));
-    $this->id=htmlspecialchars(strip_tags($this->id));
+    $this->name = htmlspecialchars(strip_tags($this->name));
+    $this->price = htmlspecialchars(strip_tags($this->price));
+    $this->description = htmlspecialchars(strip_tags($this->description));
+    $this->category_id = htmlspecialchars(strip_tags($this->category_id));
+    $this->id = htmlspecialchars(strip_tags($this->id));
   
     // bind new values
     $stmt->bindParam(':name', $this->name);
@@ -211,17 +215,12 @@ function search($keywords){
     return $stmt;
 }
 
-// read products with pagination
+// read unbooked products with pagination
 public function readPaging($from_record_num, $records_per_page){
-  
-    // select query
-    $query = "SELECT
-                c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
-            FROM
-                " . $this->table_name . " p
-                LEFT JOIN
-                    categories c
-                        ON p.category_id = c.id
+        // select query
+    $query = "SELECT c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
+            FROM " . $this->table_name . " p
+                LEFT JOIN categories c ON p.category_id = c.id
             ORDER BY p.created DESC
             LIMIT ?, ?";
   
@@ -250,6 +249,4 @@ public function count(){
     return $row['total_rows'];
 }
 }
-
-
 ?>

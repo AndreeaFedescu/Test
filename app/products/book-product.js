@@ -17,7 +17,7 @@ $(document).ready(function(){
             var book_product_html=`
                  <!-- 'read products' button to show list of products -->
                 <div id='read-products' class='btn btn-primary pull-right m-b-15px read-products-button'>
-                    <span class='glyphicon glyphicon-list'></span> Read Products
+                    <span class='glyphicon glyphicon-list'></span> Unbooked Products
                 </div>
                 
             <!-- 'create product' html form -->

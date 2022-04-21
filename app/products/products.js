@@ -17,6 +17,15 @@ function readProductsTemplate(data, keywords){
         </div>
         </form>
  
+        <!-- 'read booked products' button to show list of products -->
+        <div id='read-booked-products' class='btn btn-primary pull-right m-b-15px read-booked-products-button'>
+            <span class='glyphicon glyphicon-list'></span> Booked Products
+        </div>
+        
+         <div id='read-products' class='btn btn-primary pull-right m-b-15px read-products-button'>
+            <span class='glyphicon glyphicon-list'></span> Unbooked Products
+         </div>
+ 
         <!-- when clicked, it will load the create product form -->
         <div id='create-product' class='btn btn-primary pull-right m-b-15px create-product-button'>
             <span class='glyphicon glyphicon-plus'></span> Create Product
@@ -26,17 +35,17 @@ function readProductsTemplate(data, keywords){
         <div id='book-product' class='btn btn-primary pull-right m-b-15px book-product-button'>
             <span class='glyphicon glyphicon-plus'></span> Book Product
         </div>
-        
+               
         <!-- start table -->
         <table class='table table-bordered table-hover'>
  
             <!-- creating our table heading -->
             <tr>
-             <th class='w-5-pct'>Id</th>
-                <th class='w-20-pct'>Name</th>
-                <th class='w-10-pct'>Price</th>
-                <th class='w-15-pct'>Category</th>
-                <th class='w-25-pct text-align-center'>Action</th>
+             <th class='w-5-pct'> Id </th>
+                <th class='w-20-pct'> Name </th>
+                <th class='w-10-pct'> Price </th>
+                <th class='w-15-pct'> Category </th>
+                <th class='w-25-pct text-align-center'> Action </th>
             </tr>`;
 
     // loop through returned list of data
@@ -78,7 +87,7 @@ function readProductsTemplate(data, keywords){
 
         // first page
         if(data.paging.first!=""){
-            read_products_html+="<li><a data-page='" + data.paging.first + "'>First Page</a></li>";
+            read_products_html+="<li><a data-page='" + data.paging.first + "'> First Page </a></li>";
         }
 
         // loop through pages

@@ -22,8 +22,8 @@ $num = $stmt->rowCount();
 if($num>0){
   
     // products array
-    $products_arr=array();
-    $products_arr["records"]=array();
+    $products_arr = array();
+    $products_arr["records"] = array();
   
     // retrieve our table contents
     // fetch() is faster than fetchAll()
