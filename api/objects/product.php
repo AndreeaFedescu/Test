@@ -57,7 +57,7 @@ function readBookedProducts(){
     }
 
 // create product
-function create(){
+function createProduct(){
     // query to insert record
     $query = "INSERT INTO " . $this->table_name . "
             SET
@@ -124,7 +124,7 @@ function readOne(){
 // update the product
 function update(){
     // update query
-    $query = "UPDATE" . $this->table_name . "
+    $query = "UPDATE " . $this->table_name . "
             SET
                 name = :name,
                 price = :price,
@@ -160,8 +160,7 @@ function update(){
 
 // delete the product
 function delete(){
-  
-    // delete query
+        // delete query
     $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
   
     // prepare query
@@ -221,6 +220,7 @@ public function readPaging($from_record_num, $records_per_page){
     $query = "SELECT c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
             FROM " . $this->table_name . " p
                 LEFT JOIN categories c ON p.category_id = c.id
+                where p.isBooked = 0
             ORDER BY p.created DESC
             LIMIT ?, ?";
   

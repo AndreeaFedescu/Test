@@ -10,9 +10,18 @@ $(document).ready(function(){
             // start html
             var read_one_product_html=`
  
-            <!-- when clicked, it will show the product's list -->
-            <div id='read-products' class='btn btn-primary pull-right m-b-15px read-products-button'>
+             <div id='read-products' class='btn btn-primary pull-right m-b-15px read-products-button'>
                 <span class='glyphicon glyphicon-list'></span> Unbooked Products
+             </div>
+     
+            <!-- when clicked, it will load the create product form -->
+            <div id='create-product' class='btn btn-primary pull-right m-b-15px create-product-button'>
+                <span class='glyphicon glyphicon-plus'></span> Create Product
+            </div> 
+    
+            <!-- when clicked, it will load the create product form -->
+            <div id='book-product' class='btn btn-primary pull-right m-b-15px book-product-button'>
+                <span class='glyphicon glyphicon-plus'></span> Book Product
             </div>
             
             <!-- product data will be shown in this table -->

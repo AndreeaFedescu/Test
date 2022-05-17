@@ -2,7 +2,7 @@
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-  
+
 // include database and object files
 include_once '../config/database.php';
 include_once '../objects/product.php';
@@ -10,7 +10,7 @@ include_once '../objects/product.php';
 // instantiate database and product object
 $database = new Database();
 $db = $database->getConnection();
-  //var_dump($db);
+
 // initialize object
 $product = new Product($db);
   
@@ -19,8 +19,7 @@ $stmt = $product->read();
 $num = $stmt->rowCount();
   
 // check if more than 0 record found
-if($num>0){
-  
+if ($num>0) {
     // products array
     $products_arr = array();
     $products_arr["records"] = array();
@@ -34,7 +33,7 @@ if($num>0){
         // just $name only
         extract($row);
   
-        $product_item=array(
+        $product_item = array(
             "id" => $id,
             "name" => $name,
             "description" => html_entity_decode($description),
@@ -53,8 +52,7 @@ if($num>0){
     echo json_encode($products_arr);
 }
   
-else{
-  
+else {
     // set response code - 404 Not found
     http_response_code(404);
   

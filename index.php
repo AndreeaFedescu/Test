@@ -32,6 +32,7 @@
 
 <!-- products scripts -->
 <script src="app/products/read-products.js"></script>
+<<!--script src="app/products/read-booked-products.js"></script> -->
 <script src="app/products/create-product.js"></script>
 <script src="app/products/book-product.js"></script>
 <script src="app/products/read-one-product.js"></script>
@@ -39,5 +40,6 @@
 <script src="app/products/delete-product.js"></script>
 <script src="app/products/products.js"></script>
 <script src="app/products/search-product.js"></script>
+
 </body>
 </html>

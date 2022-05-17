@@ -3,6 +3,7 @@ $(document).ready(function(){
     // show html form when 'create product' button was clicked
     $(document).on('click', '.create-product-button', function(){
         // load list of categories
+
         $.getJSON("http://localhost/RestFullAPI2/api/category/read.php", function(data){
             // build categories option html
             // loop through returned list of data
@@ -15,31 +16,43 @@ $(document).ready(function(){
             // we have our html form here where product information will be entered
             // we used the 'required' html5 property to prevent empty fields
             var create_product_html=`
-                 <!-- 'read products' button to show list of products -->
-                <div id='read-products' class='btn btn-primary pull-right m-b-15px read-products-button'>
+                <!-- 'read products' button to show list of products -->
+               
+                 <div id='read-products' class='btn btn-primary pull-right m-b-15px read-products-button'>
                     <span class='glyphicon glyphicon-list'></span> Unbooked Products
+                 </div>
+         
+                <!-- when clicked, it will load the create product form -->
+                <div id='create-product' class='btn btn-primary pull-right m-b-15px create-product-button'>
+                    <span class='glyphicon glyphicon-plus'></span> Create Product
+                </div> 
+        
+                <!-- when clicked, it will load the create product form -->
+                <div id='book-product' class='btn btn-primary pull-right m-b-15px book-product-button'>
+                    <span class='glyphicon glyphicon-plus'></span> Book Product
                 </div>
-                
+              
+              
             <!-- 'create product' html form -->
-            <form id='create-product-form' action='#' method='post' border='0'>
+            <form id='create-product-form' action='#' method='post' >
                 <table class='table table-hover table-responsive table-bordered'>
              
                     <!-- name field -->
                     <tr>
                         <td>Name</td>
-                        <td><input type='text' name='name' class='form-control' required /></td>
+                        <td><input type='text' name='name' class='form-control'  /></td>
                     </tr>
              
                     <!-- price field -->
                     <tr>
                         <td>Price</td>
-                        <td><input type='number' min='1' name='price' class='form-control' required /></td>
+                        <td><input type='number' min='1' name='price' class='form-control'  /></td>
                     </tr>
              
                     <!-- description field -->
                     <tr>
                         <td>Description</td>
-                        <td><textarea name='description' class='form-control' required></textarea></td>
+                        <td><textarea name='description' class='form-control' ></textarea></td>
                     </tr>
              
                     <!-- categories 'select' field -->
@@ -76,7 +89,7 @@ $(document).ready(function(){
 
         // submit form data to api
         $.ajax({
-            url: "http://localhost/api/product/create.php",
+            url: "http://localhost/RestFullAPI2/api/product/create_product.php",
             type : "POST",
             contentType : 'application/json',
             data : form_data,
@@ -93,3 +106,5 @@ $(document).ready(function(){
         return false;
     });
 });
+
+

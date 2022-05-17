@@ -3,6 +3,7 @@ $(document).ready(function(){
     // show html form when 'book a product' button was clicked
     $(document).on('click', '.book-product-button', function(){
         // load list of categories
+
         $.getJSON("http://localhost/RestFullAPI2/api/category/read-booking.php", function(data){
             // build categories option html
             // loop through returned list of data
@@ -16,42 +17,53 @@ $(document).ready(function(){
             // we used the 'required' html5 property to prevent empty fields
             var book_product_html=`
                  <!-- 'read products' button to show list of products -->
-                <div id='read-products' class='btn btn-primary pull-right m-b-15px read-products-button'>
+          
+                 <div id='read-products' class='btn btn-primary pull-right m-b-15px read-products-button'>
                     <span class='glyphicon glyphicon-list'></span> Unbooked Products
+                 </div>
+         
+                <!-- when clicked, it will load the create product form -->
+                <div id='create-product' class='btn btn-primary pull-right m-b-15px create-product-button'>
+                    <span class='glyphicon glyphicon-plus'></span> Create Product
+                </div> 
+        
+                <!-- when clicked, it will load the create product form -->
+                <div id='book-product' class='btn btn-primary pull-right m-b-15px book-product-button'>
+                    <span class='glyphicon glyphicon-plus'></span> Book Product
                 </div>
                 
             <!-- 'create product' html form -->
-            <form id='book-product-form' action='#' method='post' border='0'>
+            <form id='book-product-form' action='#' method='post' >
                 <table class='table table-hover table-responsive table-bordered'>
              
                     <!-- first name field -->
                     <tr>
                         <td>First Name</td>
-                        <td><input type='text' name='firstName' class='form-control' required /></td>
+                        <td><input type='text' name='firstName' class='form-control' /></td>
                     </tr>
                     
                     <!-- last name field -->
                     <tr>
                         <td>Last Name</td>
-                        <td><input type='text' name='lastName' class='form-control' required /></td>
+                        <td><input type='text' name='lastName' class='form-control'  /></td>
                     </tr>
              
                     <!-- email field -->
                     <tr>
                         <td>Email</td>
-                        <td><input type='email' name='email' class='form-control' required /></td>
+                        <td><input type='text' name='email' class='form-control'  /></td>
                     </tr>
              
                     <!-- address field -->
                     <tr>
                         <td>Address</td>
-                        <td><textarea name='address' class='form-control' required></textarea></td>
+                        <td><textarea name='address' class='form-control' ></textarea></td>
                     </tr>
                     
                     <!-- zip code field -->
                     <tr>
                         <td>Zip Code</td>
-                        <td><input type='number' name='zipCode' class='form-control' required /></td>
+                        <td><input type='number' name='zipCode' class='form-control'  /></td>
                     </tr>
              
                     <!-- categories 'select' field -->
@@ -69,7 +81,6 @@ $(document).ready(function(){
                             </button>
                         </td>
                     </tr>
-             
                 </table>
             </form>`;
 

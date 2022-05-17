@@ -1,27 +1,20 @@
 // product list html
 function readProductsTemplate(data, keywords){
-
     var read_products_html=`
         <!-- search products form -->
         <form id='search-product-form' action='#' method='post'>
-        <div class='input-group pull-left w-30-pct'>
- 
+        <div class='input-group pull-left w-30-pct'> 
             <input type='text' value='` + keywords + `' name='keywords' class='form-control product-search-keywords' placeholder='Search products...' />
  
             <span class='input-group-btn'>
                 <button type='submit' class='btn btn-default' type='button'>
                     <span class='glyphicon glyphicon-search'></span>
                 </button>
-            </span>
- 
+            </span> 
         </div>
         </form>
  
-        <!-- 'read booked products' button to show list of products -->
-        <div id='read-booked-products' class='btn btn-primary pull-right m-b-15px read-booked-products-button'>
-            <span class='glyphicon glyphicon-list'></span> Booked Products
-        </div>
-        
+       
          <div id='read-products' class='btn btn-primary pull-right m-b-15px read-products-button'>
             <span class='glyphicon glyphicon-list'></span> Unbooked Products
          </div>
@@ -35,13 +28,26 @@ function readProductsTemplate(data, keywords){
         <div id='book-product' class='btn btn-primary pull-right m-b-15px book-product-button'>
             <span class='glyphicon glyphicon-plus'></span> Book Product
         </div>
-               
+            
+         <table class='table table-bordered table-hover'>
+            <tr>
+                <th class='w-15-pct'> Menu </th>
+                <th class='w-85-pct'> List </th>
+            </tr>
+            
+            <tr>
+                <td>
+                
+                </td>
+                <td></td>
+            </tr>
+         </table>
+                
         <!-- start table -->
         <table class='table table-bordered table-hover'>
- 
-            <!-- creating our table heading -->
+             <!-- creating our table heading -->
             <tr>
-             <th class='w-5-pct'> Id </th>
+                <th class='w-5-pct'> Id </th>
                 <th class='w-20-pct'> Name </th>
                 <th class='w-10-pct'> Price </th>
                 <th class='w-15-pct'> Category </th>
