@@ -6,7 +6,7 @@ header("Content-Type: application/json; charset=UTF-8");
 // include database and object files
 include_once '../config/database.php';
 include_once '../objects/category.php';
-  
+
 // instantiate database and category object
 $database = new Database();
 $db = $database->getConnection();
@@ -14,16 +14,18 @@ $db = $database->getConnection();
 // initialize object
 $category = new Category($db);
   
-// query categorys
+// query categories
 $stmt = $category->read();
 $num = $stmt->rowCount();
-  
+
+//$stmpBP = $category->readBookedProducts();
+//$numBP = $stmtBP->rowCount;
+
 // check if more than 0 record found
 if($num>0){
-  
     // products array
-    $categories_arr=array();
-    $categories_arr["records"]=array();
+    $categories_arr = array();
+    $categories_arr["records"] = array();
   
     // retrieve our table contents
     // fetch() is faster than fetchAll()
@@ -49,9 +51,7 @@ if($num>0){
     // show categories data in json format
     echo json_encode($categories_arr);
 }
-  
 else{
-  
     // set response code - 404 Not found
     http_response_code(404);
   
